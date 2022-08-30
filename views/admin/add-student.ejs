@@ -1,0 +1,136 @@
+
+<%- include('./include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./include/sidebar.ejs') %>
+    <!-- Start Welcome area -->
+            <%- include('./include/navbar.ejs') %> 
+        <!-- Single pro tab review Start-->
+        <% if(isAuthenticated){ %> 
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid"> 
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description"> Information</a></li>
+                               
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad">
+                                                    <form  action="<% if(editing) { %>editStudent<%}else {%>addStudent<%}%>" enctype="multipart/form-data" method="POST">
+                                                    <!-- <form  action="addStudent" enctype="multipart/form-data" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload"> -->
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                 <% if (student) {%> 
+                                                                    <input name="studentId"   value="<%= student._id%>" type="hidden" ></input>
+                                                                    <% } %>
+                                                                
+                                                                <div class="form-group">
+                                                                    <input name="name" id="name" value="<% if (editing) {%> <%= student.firstName %> <% } %>"  type="text" class="form-control" placeholder="Full Name">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="add" id="add" value="<% if (editing) {%> <%= student.address %> <% } %>" type="text" class="form-control" placeholder="Address">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="mobileNum" id="mobileNum" value="<% if (editing) {%> <%= student.mobileno %> <% } %>" type="text" class="form-control" placeholder="Mobile no.">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="finish" id="finish" value="<% if (editing) {%> <%= student.date %> <% } %>" type="text" class="form-control" placeholder="Date of Birth">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <select name="gender" id="gender"  class="form-control">
+																		<option value="none" selected='' disabled="">Select Gender</option>
+																		<option value="Male" <% if (editing && student.gender == "Male" ) {%> selected <% } %> >Male</option>
+																		<option value="Female" <% if (editing && student.gender == "Female" ) {%> selected <% } %>>Female</option>
+																	</select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="postC" value="<% if (editing) {%> <%= student.postcode %> <% } %>" id="postC" type="text" class="form-control" placeholder="Postcode">
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                  <p><input type="file"  accept="image/*" name="studentImage" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                                                                  <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                                                                  <p><img src="<% if (editing) {%> <%= student.imageUrl %> <% } %>" id="output" width="200" /></p>
+                                                                  <input type="hidden" class="form-control" value="<% if (editing) {%> <%= student.imageUrl %> <% } %>" name="currentImage"  >
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <% if(courses){ %>
+                                                                        <select name="department" id="department"  class="form-control">
+                                                                            <option value="none" selected='' disabled="">Select Professor</option>
+                                                                            
+                                                                                <% for (course of courses){%>
+                                                                            <option value="<%= course._id %>" <% if (editing && course.courseId._id.toString() == course._id.toString() ){ %> selected <% } %> > 
+                                                                                <%= course.courseName %>
+                                                                            </option>
+                                                                            <% } }%>
+                                                                        </select>
+                                                                    <!-- <input name="department" value="<% if (editing) {%> <%= student.department %> <% } %>" id="department" type="text" class="form-control" placeholder="Department"> -->
+                                                                </div>
+                                                                <div class="form-group res-mg-t-15">
+                                                                    <textarea name="description"  id="description" placeholder="Description"><% if (editing) {%> <%= student.description %> <% } %></textarea>
+                                                                </div>
+                                                                
+                                                                
+                                                                <div class="form-group">
+                                                                    <input type="email" value="<% if (editing) {%> <%= student.email %> <% } %>" name="email" id="email" class="form-control" placeholder="Email Address">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="url" name="urlFace" value="<% if (editing) {%> <%= student.urlF %> <% } %>" id="urlFace"  class="form-control" placeholder="Facebook URL">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="url" class="form-control" value="<% if (editing) {%> <%= student.urlT %> <% } %>" name="urlTwitter" id="urlTwitter" placeholder="Twitter URL">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="url" class="form-control" value="<% if (editing) {%> <%= student.urlG %> <% } %>" name="urlGoogle" id="urlGoogle" placeholder="Google Plus">
+                                                                </div>
+
+                                                                
+                                                                    
+                                                               
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light"><% if (editing) {%> Edit <%}else {%>Submit<%}%></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+
+        <br><br> <br><br><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%- include('./include/footer.ejs') %>   
+        <script>
+            var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+            </script>
+</body>
+
+</html>

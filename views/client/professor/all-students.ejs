@@ -1,0 +1,76 @@
+<%- include('../include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../include/sidebar.ejs') %>
+    <%- include('../include/navbar.ejs') %> 
+    <% if(isAuthenticated){ %>
+    <div class="product-status mg-b-15">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="product-status-wrap drp-lst">
+                      <h4>Students List</h4>
+                      
+                      <div class="asset-inner">
+                          <table class=" table-hover">
+                              <tr>
+                                  <th>Photo</th>
+                                  <th>No</th>
+                                  <th>Full Name</th>
+                                  <th>Gender</th>
+                                  <th>Department</th>
+                                  <th>Email</th>
+                                  <th>Phone</th>
+                                  <th>Address</th>
+                                  <th>Profile</th>
+                              </tr>
+                                <% let Num = 0 %>
+                                <% for (let s of students) { %>
+                                  <%  Num++ %>
+                              <tr>
+                                  <td><img class="img" src="<%=s.imageUrl%>"></td>
+                                  <td><%= Num %></td>
+                                  <td><%= s.firstName %></td>
+                                  <td><%= s.gender %></td>
+                                  <td><%= s.courseId.courseName %></td>
+                                  <td><%= s.email %></td>
+                                  <td><%= s.mobileno %></td>
+                                  <td><%= s.address %></td>
+                                  <td>
+                                    <form action="/studentDetails" method="post" style="display:inline-block;">
+                                      <input type="hidden" value="<%= s._id %>" name="studentId">
+                                      <button type="submit" class="educate-icon educate-library icon-wrap btn btn-primary data-toggle="modal" data-target="#details"></button>
+                                    </form>
+                                   
+                                     
+                                      
+                                    </td>
+                                   
+
+                                     
+                              </tr>
+                              <% } %>  
+                          </table>
+                          
+                      </div>
+                 </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<%}%>
+<br><br> <br><br><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%- include('../include/footer.ejs') %> 
+
+   
+</body>
+
+</html>

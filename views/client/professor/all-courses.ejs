@@ -1,0 +1,152 @@
+<%- include('../include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../include/sidebar.ejs') %>
+    <%- include('../include/navbar.ejs') %>
+    <% if(isAuthenticated){ %>
+        <div class="product-status mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap">
+                            <h4>Course List</h4>
+                          
+                            <div class="asset-inner">
+                                <table class=" table-hover">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Image</th>
+                                        <th>Name of Course</th>
+                                        <th>Course Start Date</th>
+                                        <th>Course Duration</th>
+                                        <th>Department</th>
+                                        <th>Course Professor</th>
+                                        <th>Students</th>
+                                        <th>Add lesson</th>
+                                        
+                                    </tr>
+                                    <% let Num = 0 %>
+                                    <% for (let c of courses) { %>
+                                      <% if (c.professorId.email == isUser.email ) { %>
+                                      <%  Num++ %>
+                                    <tr>
+                                        <td><%= Num %></td>
+                                        <td><img src="<%=c.imageUrl%>"></td>
+                                        <td><%= c.courseName %></td>
+                                        
+                                        <td><%= c. courseStartDate%></td>
+                                        <td><%= c.courseDuration %></td>
+                                        <td><%= c.department %></td>
+                                        <td><%= c.professorId.firstName %></td>
+                                        <td>
+                                          <form action="/courseStudent" method="post" style="display:inline-block;">
+                                            <input type="hidden" value="<%= c._id %>" name="courseId">
+                                            <button type="submit" class="educate-icon educate-student icon-wrap btn btn-primary "></button>
+                                          </form>
+                                        </td>  
+                                        <td>
+                                            
+                                        <button type="button" class=" btn btn-primary " data-toggle="modal" data-target="#exampleModal">Add Lesson</button>
+                                      
+              
+                                      
+                                    </td>
+                                    <!-- delete modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="review-content-section">
+                                                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                                                    <form  action="addLesson" enctype="multipart/form-data" method="POST">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                
+                                                                                <div class="form-group">
+                                                                                    <input name="name" id="name" type="text" class="form-control" placeholder="Subject" value="">
+                                                                                </div>
+                                                                               
+                                                                                
+                                                                               
+                                                                                <div class="form-group">
+                                                                                    <p><input type="file"  accept="image/*" name="studentImage" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                                                                                    <p><label for="file" style="cursor: pointer;">Upload File</label></p>
+                                                                                    <p><img src="" id="output" width="200" /></p>
+                                                                                    <input type="hidden" class="form-control" value="" name="currentImage"  >
+                                                                                  </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group res-mg-t-15">
+                                                                                    <input name="departmentC" type="text" class="form-control" placeholder="Department" value="<%= c.courseName %>">
+                                                                                </div>
+                                                                                <div class="form-group edit-ta-resize">
+                                                                                    <textarea name="description"></textarea>
+                                                                                </div>
+                                                                               
+                                                                                
+                                                                                <div class="form-group">
+                                                                                    <input name="courseId" type="text" class="form-control" placeholder="Year" value="<%= c._id %>">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="payment-adress">
+                                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Add</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            
+                                            
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- end delet modal -->
+                                    </tr>
+                                    
+                                    <% } } %>
+                                </table>
+                              
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+        <br><br> <br><br><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%- include('../include/footer.ejs') %> 
+        <script>
+            var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+            </script>
+</body>
+
+</html>

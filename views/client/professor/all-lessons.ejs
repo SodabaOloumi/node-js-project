@@ -1,0 +1,70 @@
+<%- include('../include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../include/sidebar.ejs') %>
+    <%- include('../include/navbar.ejs') %> 
+    <% if(isAuthenticated){ %>
+    <div class="product-status mg-b-15">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="product-status-wrap drp-lst">
+                      
+                      
+                      <div class="asset-inner">
+                          <table class=" table-hover">
+                              <tr>
+                                  <th>Photo</th>
+                                  <th>No</th>
+                                  <th>Subject</th>
+                                  <th>Course</th>
+                                  <th>Action</th>
+                              </tr>
+                                <% let Num = 0 %>
+                                <% for (let l of lessons) { %>
+                                  <%  Num++ %>
+                              <tr>
+                                  <td><img class="img" src="<%=l.imageUrl%>"></td>
+                                  <td><%= Num %></td>
+                                  <td><%= l.lessonName %></td>
+                                  <td><%= l.courseId.courseName %></td>
+                                  
+                                  <td>
+                                    <form action="" method="post" style="display:inline-block;">
+                                      <input type="hidden" value="<%= l._id %>" name="lessonId">
+                                      <button type="submit" class="educate-icon educate-library icon-wrap btn btn-primary data-toggle="modal" data-target="#details">Read</button>
+                                    </form>
+                                   
+                                     
+                                      
+                                    </td>
+                                   
+
+                                     
+                              </tr>
+                              <% } %>  
+                          </table>
+                          
+                      </div>
+                 </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<%}%>
+     
+<br><br> <br><br><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%- include('../include/footer.ejs') %> 
+
+   
+</body>
+
+</html>

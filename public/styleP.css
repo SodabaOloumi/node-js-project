@@ -1,0 +1,239 @@
+/* *{
+    font-family: montserrat;
+} 
+body{
+    background: f1fbff;
+} 
+.section-padding{
+    padding: 100px 0;
+} 
+/* start carousel */
+/* .carousel-item{
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption{
+    bottom: 220px;
+    z-index: 2;
+}
+.carousel-caption h5{
+    font-size: 45px;
+    text-transform:uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+.carousel-caption p{
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+} 
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}  */
+/* end carousel */
+/* start navbar */
+/* .navbar-nav a{
+    font-size: 15px;
+   text-transform:uppercase ;
+   font-weight: 500;
+}
+.navbar-light .navbar-brand{
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+}
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover{
+    color: #000;
+}
+.navbar-light .navbar-nav .navbar-link{
+    color: #000;
+}
+.w-100{
+    height: 100vh;
+} */
+
+/* end navbar */
+/* 
+#services .card-body .icon{
+    font-size: 50px;
+}
+.img-area img{
+    width: 100%;
+    height: 220px ;
+}
+.col-12 {
+    padding-top:12px;     
+} */
+/* team section */
+.team-member{
+    /* background-color: rgba(72, 130, 247, 0.952); */
+    background-color: rgba(232, 236, 246, 0.073);
+    padding-right: 0%;
+    padding-left: 0%;
+   
+}
+.team-member.even{
+    /* background-color: rgb(26, 87, 241); */
+    background-color: white;
+}
+.team-member .description{
+ padding: 12px;
+ padding-top: 22px;
+ font-size: medium;
+}
+.team-member .hline{
+    width: 70px;
+    height: 2px;
+    margin: 16px auto;
+    background-color: rgb(30, 99, 139);
+}
+.team-member .team-member-img img,
+.team-member .team-member-img .social-icons{
+   transition: all 0.4 ease;
+}
+.team-member .team-member-img{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: cover;
+   
+}
+.desButton{
+    padding-bottom: 10px;
+    
+}
+.team-member .team-member-img .social-icons{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(30, 99, 139) ;
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.team-member .team-member-img .social-icons a{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(255, 255,255, 0.5);
+    font-size: 24px;
+    color: #fff;
+    border-radius: 100px;
+    margin-left: 4px;
+    margin-right:4px ;
+}
+.team-member .team-member-img .social-icons a:hover{
+    background-color: #fff;
+    color: rgb(30, 99, 139);
+}
+.team-member:hover .team-member-img .social-icons{
+    bottom: 0;
+}
+.team-member:hover img{
+    transform: translateY(-60px);
+}
+
+/* end team section */
+/* testimonial section */
+
+.review .star{
+    color: rgb(245, 115, 9) ;
+}
+.review p{
+    max-width: 720px;
+    margin: 24px auto;
+    font-style: italic;
+}
+#testimonial img{
+    width: 65px;
+    height: 65px;
+    border-radius: 100px;
+    transition: all 0.4s ease;
+
+}
+#testimonial .nav-pills .nav-link.active{
+    background-color: transparent;
+}
+#testimonial .nav-pills .nav-link.active img{
+    transform: scale(1.2);
+}
+
+/* end testimonial section */
+/* responsive css */
+@media only screen and (min-width: 768px) and (max-width: 991px){
+
+    .carousel-caption{
+        bottom: 370px;
+    }
+    .carousel-caption p{
+        width: 100%;    
+    }
+    .card{
+        margin-bottom: 30px;
+    }
+    .img-area img{
+        width: 100%;
+        
+    }
+    #services .card-body .icon{
+        font-size: 25px; 
+          
+    }
+  
+}
+@media only screen and (max-width: 767px) {
+    .navbar-nav{
+        text-align: center;
+    }
+    .carousel-caption{
+        bottom: 125px;
+    }
+    .carousel-caption h5{
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+    .carousel-caption a{
+        padding: 10px 15px;
+    }
+    .carousel-caption p{
+        width: 100%;
+        line-height: 1.6;
+        font-size: 12px;
+    }
+    .about-text{
+        padding-top: 50px;
+    }
+    .card{
+        margin-bottom: 30px;
+    }
+    /* #services .card-body .icon{
+        font-size: 15px;    
+    }
+    .col-12 {
+        padding: 10px 16px;
+    } */
+    /* .team-member .team-member-img{
+        width: 100%;
+    } */
+}
+ .navbar-brand .icon{
+    width: 40px;
+    height: 40px;
+   
+}

@@ -1,0 +1,110 @@
+<%- include('./include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./include/sidebar.ejs') %>
+    <!-- Start Welcome area -->
+            <%- include('./include/navbar.ejs') %> 
+        <!-- Single pro tab review Start-->
+        <% if(isAuthenticated){ %> 
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Courses Details</a></li>
+                    
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                                    <form  action="<% if(editing) { %>editCourse<%}else {%>addCourse<%}%>" enctype="multipart/form-data" method="POST">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <% if (course) {%> 
+                                                                    <input name="courseId"   value="<%= course._id%>" type="text" ></input>
+                                                                    <% } %>
+                                                                <div class="form-group">
+                                                                    <input name="name" id="name" type="text" class="form-control" placeholder="Course Name" value="<% if (editing) {%> <%= course.courseName %> <% } %>">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="dateStart" id="finish" type="text" class="form-control" placeholder="Course Start Date" value="<% if (editing) {%> <%= course.courseStartDate %> <% } %>">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="courseD" type="text" class="form-control" placeholder="Course Duration" value="<% if (editing) {%> <%= course.courseDuration %> <% } %>">
+                                                                </div>
+                                                               
+                                                                <div class="form-group">
+                                                                    <p><input type="file"  accept="image/*" name="studentImage" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                                                                    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                                                                    <p><img src="<% if (editing) {%> <%= course.imageUrl %> <% } %>" id="output" width="200" /></p>
+                                                                    <input type="hidden" class="form-control" value="<% if (editing) {%> <%= course.imageUrl %> <% } %>" name="currentImage"  >
+                                                                  </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group res-mg-t-15">
+                                                                    <input name="departmentC" type="text" class="form-control" placeholder="Department" value="<% if (editing) {%> <%= course.department %> <% } %>">
+                                                                </div>
+                                                                <div class="form-group edit-ta-resize">
+                                                                    <textarea name="descriptionC"><% if (editing) {%> <%= course.description %> <% } %></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <% if(professors){ %>
+                                                                    <select name="professorId" id="professorId"  class="form-control">
+																		<option value="none" selected='' disabled="">Select Professor</option>
+                                                                        
+                                                                            <% for (professor of professors){%>
+																		<option value="<%= professor._id %>" <% if (editing && course.professorId._id.toString() == professor._id.toString() ){ %> selected <% } %> > 
+                                                                            <%= professor.firstName %>
+                                                                        </option>
+																		<% } }%>
+																	</select>
+                                                                </div>
+                                                                <!-- <div class="form-group">
+                                                                    <!-- <input name="professorN" type="text" class="form-control" placeholder="Course Professor" value="<% if (editing) {%> <%= course.professorName %> <% } %>"> -->
+                                                                   
+                                                                <div class="form-group">
+                                                                    <input name="yearC" type="text" class="form-control" placeholder="Year" value="<% if (editing) {%> <%= course.year %> <% } %>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light"><% if (editing) {%> Edit <%}else {%>Submit<%}%></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <%} %>
+        <br><br> <br><br><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%- include('./include/footer.ejs') %>  
+        
+       
+        <script>
+            var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+            </script>
+</body>
+
+</html>
