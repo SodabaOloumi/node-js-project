@@ -9,13 +9,10 @@ Professors, on the other hand, are given the privilege to add their courses to t
 Students are granted access to these registered courses. They can browse through the available materials uploaded by their respective professors. This enables them to stay updated with course content and refer back to important resources whenever needed.
 
 ##  Workflow
-1: Admin, Professors, and Students can logen and register.
-
-2: Admin can add, edit, delete the professors, students, courses and can view thier profiles .
-
-3: Professors can view thier courses, add lessons and set thier profiles.
-
-4: Students can view thier lessons and set thier profile.
+1: Admin, Professors, and Students log in or register to the system.
+2: Admin has the ability to add, edit, delete professors, students, and courses. Can also view their profiles.
+3: Professors can log in and view their assigned courses. They have the ability to add lessons to the courses and set their own profiles.
+4: Students can log in and view their assigned lessons. They also have the ability to set their own profiles.
 
 
 ## How to run this project locally:
